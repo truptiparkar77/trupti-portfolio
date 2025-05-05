@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trupti's Portfolio</title>
+    <style>
+        body {
+            background-color: #008080;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+        }
+
+        .desktop {
+            position: relative;
+            width: 100vw;
+            height: 100vh;
+        }
+
+        .icon {
+            position: absolute;
+            width: 80px;
+            text-align: center;
+            color: white;
+            font-size: 14px;
+            cursor: pointer;
+        }
+
+        .icon img {
+            width: 48px;
+            height: 48px;
+        }
+
+        .icon:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="desktop">
+        <div class="icon" style="top: 50px; left: 50px;" onclick="location.href='projects.html'">
+            <img src="https://via.placeholder.com/48" alt="Projects">
+            <div>Projects</div>
+        </div>
+        <div class="icon" style="top: 50px; left: 150px;" onclick="location.href='about.html'">
+            <img src="https://via.placeholder.com/48" alt="About Me">
+            <div>About Me</div>
+        </div>
+        <div class="icon" style="top: 50px; left: 250px;" onclick="location.href='contact.html'">
+            <img src="https://via.placeholder.com/48" alt="Contact Me">
+            <div>Contact Me</div>
+        </div>
+    </div>
+</body>
+</html>
