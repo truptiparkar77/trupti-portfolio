@@ -11,7 +11,7 @@
         }
 
         body {
-            background-color: #0f4f2ea;
+            background-color: #f4f2ea; /* Fixed invalid color value */
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
@@ -56,24 +56,19 @@
         }
 
         .desktop {
-            position: relative;
-            width: 100vw;
-            height: 100vh;
             display: flex;
-            flex-direction: row; /* Changed from column to row */
-            align-items: flex-start;
-            justify-content: flex-start;
-            gap: 20px; /* Ensures 20px gap between icons */
+            flex-direction: column;
+            gap: 20px;
             padding: 50px;
         }
 
         .icon {
-            position: absolute;
             width: 80px;
             text-align: center;
-            color: white;
-            font-size: 14px;
+            color: rgb(0, 0, 0);
+            font-size: 16px;
             cursor: pointer;
+            /* Removed position: absolute to allow natural flow */
         }
 
         .icon img {
@@ -104,6 +99,21 @@
             </a>
         </div>
     </header>
+    <div id="screenSize" style="position: fixed; bottom: 10px; right: 10px; background: rgba(0,0,0,0.7); color: white; padding: 10px; border-radius: 5px;"></div>
+    <script>
+        function updateScreenSize() {
+            const width = window.innerWidth;
+            const height = window.innerHeight;
+            const screenWidth = window.screen.width;
+            const screenHeight = window.screen.height;
+            document.getElementById('screenSize').innerHTML = `
+                Window: ${width}x${height}px<br>
+                Screen: ${screenWidth}x${screenHeight}px
+            `;
+        }
+        window.addEventListener('load', updateScreenSize);
+        window.addEventListener('resize', updateScreenSize);
+    </script>
     <div class="desktop">
         <div class="icon" style="top: 50px; left: 50px;" onclick="location.href='projects.html'">
             <img src="https://via.placeholder.com/48" alt="Projects">
