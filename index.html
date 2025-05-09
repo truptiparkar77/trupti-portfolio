@@ -231,6 +231,19 @@
       opacity: 1;
     }
 
+    .doormat-container {
+      position: fixed;
+      bottom: 2px;
+      left: calc(50% + 10px); /* Move 10px to the right */
+      transform: translateX(-50%);
+      z-index: 1;
+    }
+
+    .doormat-image {
+      width: 1200px;
+      height: 1000px;
+    }
+
     /* Screen Info */
     #screenSize {
       position: fixed;
@@ -284,6 +297,11 @@
       <img src="Contact me Icon.png" alt="Contact Me" />
       <div>Contact Me</div>
     </div>
+  </div>
+
+  <!-- Doormat -->
+  <div class="doormat-container">
+    <img src="Doormat.png" alt="Doormat" class="doormat-image" />
   </div>
 
   <!-- Bowl -->
