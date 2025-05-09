@@ -170,19 +170,22 @@
       z-index: 1;
       cursor: pointer;
       transition: transform 0.2s ease;
-    }
-
-    .bowl-container:hover {
-      transform: scale(1.03);
+      width: 80px;
     }
 
     .bowl-image {
-      width: 80px;
+      width: 68px; /* Match other icons size */
+      height: 68px; /* Match other icons size */
       position: absolute;
-      left: 0;
-      bottom: 20px;
+      left: 6px; /* Center within container */
+      bottom: 30px;
       opacity: 0;
       transition: opacity 0.3s ease;
+      filter: drop-shadow(4px 4px 8px rgba(0, 0, 0, 0.15)); /* Match other icons shadow */
+    }
+
+    #emptyBowl {
+      bottom: 27px; /* 30px - 3px */
     }
 
     .bowl-image.active {
@@ -191,7 +194,7 @@
 
     .bowl-container .title {
       position: absolute;
-      width: 80px;
+      width: 100%;
       bottom: 0;
       left: 0;
       text-align: center;
@@ -279,6 +282,7 @@
   <div class="bowl-container" onclick="startAnimation()">
     <img src="Full bowl.png" alt="Full Bowl" class="bowl-image" id="fullBowl" />
     <img src="Half filled Bowl.png" alt="Half Bowl" class="bowl-image" id="halfBowl" />
+    <img src="Quarter filled Bowl.png" alt="Quarter Bowl" class="bowl-image" id="quarterBowl" />
     <img src="Empty Bowl.png" alt="Empty Bowl" class="bowl-image active" id="emptyBowl" />
     <div class="title">Bowl</div>
   </div>
@@ -320,12 +324,16 @@
 
     // Cat Animation
     const frames = ['frame4', 'frame1', 'frame2', 'frame3', 'frame4'];
-    const bowls = ['fullBowl', 'halfBowl', 'emptyBowl'];
+    const bowls = ['fullBowl', 'halfBowl', 'quarterBowl', 'emptyBowl'];
     let isAnimating = false;
 
     function startAnimation() {
       if (isAnimating) return;
       isAnimating = true;
+
+      // Set full bowl immediately when animation starts
+      document.querySelectorAll('.bowl-image').forEach(b => b.classList.remove('active'));
+      document.getElementById('fullBowl').classList.add('active');
 
       const catContainer = document.querySelector('.cat-container');
       catContainer.style.opacity = '1';
@@ -336,7 +344,6 @@
 
       const frameInterval = setInterval(() => {
         document.querySelectorAll('.cat-frame').forEach(f => f.classList.remove('active'));
-        document.querySelectorAll('.bowl-image').forEach(b => b.classList.remove('active'));
 
         if (frameIndex < frames.length) {
           const frame = document.getElementById(frames[frameIndex]);
@@ -344,20 +351,31 @@
           currentPosition = (frameIndex / (frames.length - 1)) * totalDistance;
           catContainer.style.transform = `translateX(calc(-50% - ${currentPosition}px))`;
 
+          // When cat reaches the bowl (last frame)
           if (frameIndex === frames.length - 1) {
-            document.getElementById(bowls[0]).classList.add('active');
+            setTimeout(() => {
+              document.querySelectorAll('.bowl-image').forEach(b => b.classList.remove('active'));
+              document.getElementById('halfBowl').classList.add('active');
+            }, 500);
+
+            // Change to quarter bowl
+            setTimeout(() => {
+              document.querySelectorAll('.bowl-image').forEach(b => b.classList.remove('active'));
+              document.getElementById('quarterBowl').classList.add('active');
+            }, 1000);
+
+            // Change to empty bowl
+            setTimeout(() => {
+              document.querySelectorAll('.bowl-image').forEach(b => b.classList.remove('active'));
+              document.getElementById('emptyBowl').classList.add('active');
+            }, 1500);
           }
-        } else if (frameIndex < frames.length + bowls.length) {
-          document.getElementById('frame4').classList.add('active');
-          document.getElementById(bowls[frameIndex - frames.length]).classList.add('active');
         } else {
           clearInterval(frameInterval);
           setTimeout(() => {
             catContainer.style.opacity = '0';
             catContainer.style.transform = 'translateX(-50%)';
             document.querySelectorAll('.cat-frame').forEach(f => f.classList.remove('active'));
-            document.querySelectorAll('.bowl-image').forEach(b => b.classList.remove('active'));
-            document.getElementById('emptyBowl').classList.add('active');
             isAnimating = false;
           }, 1000);
         }
