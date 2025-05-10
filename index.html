@@ -321,6 +321,23 @@
       height: 100%;
       display: block;
     }
+
+    /* Intro Box */
+    .intro-box {
+      position: fixed;
+      left: calc(79% - 165px); /* Changed from using right to using left */
+      top: 40%;
+      transform: translateY(-50%); /* Only transform Y since we're using left */
+      z-index: 1000;
+      filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.2));
+      width: 400px;
+    }
+
+    .intro-box img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
   </style>
 </head>
 
@@ -363,6 +380,11 @@
       <img src="Contact me Icon.png" alt="Contact Me" />
       <div>Contact Me</div>
     </div>
+  </div>
+
+  <!-- Intro Box -->
+  <div class="intro-box">
+    <img src="Intro box.png" alt="Intro">
   </div>
 
   <!-- IDB Button -->
