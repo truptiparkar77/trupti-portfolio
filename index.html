@@ -237,10 +237,12 @@
       opacity: 0;
       transition: opacity 0.2s ease;
       filter: drop-shadow(0 5px 3px rgba(0, 0, 0, 0.2));
+      display: block; /* Add this to ensure frames are displayed */
     }
 
     .cat-frame.active {
       opacity: 0.95;
+      visibility: visible; /* Add this to ensure active frames are visible */
     }
 
     .doormat-container {
@@ -425,13 +427,24 @@
 
         if (frameId === 'eating') {
           catContainer.style.left = `${endPosition + 39}px`;
-          catContainer.style.bottom = '108px';
+          catContainer.style.bottom = '107px';
           catContainer.style.width = '110px';
           catContainer.style.height = '110px';
+        } else if (frameId.startsWith('walk')) {
+          catContainer.style.bottom = '110.5px';
+          catContainer.style.width = '110px';
+          catContainer.style.height = '110px';
+          catContainer.style.filter = 'drop-shadow(0 9px 4px rgba(0, 0, 0, 0.2))'; // Moved shadow down 1px and reduced opacity
+        } else if (frameId === 'stagnant') {
+          catContainer.style.bottom = '112.5px'; // Increased from 110.5px to move up by 2px
+          catContainer.style.width = '93px';
+          catContainer.style.height = '93px';
+          catContainer.style.filter = 'none'; // Reset shadow
         } else {
-          catContainer.style.bottom = '110.5px'; // Changed from 109px to move up by 1.5px more
+          catContainer.style.bottom = '108px';
           catContainer.style.width = '100px';
           catContainer.style.height = '100px';
+          catContainer.style.filter = 'none'; // Reset shadow
         }
 
         setTimeout(() => animateFrame(index + 1), frameDuration);
