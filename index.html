@@ -27,10 +27,11 @@
     body {
       font-family: Arial, sans-serif;
       background-color: #f4f2ea;
-      background-image: url('Background illustration.png');
-      background-position: calc(37% - 10px) 60px; /* Changed from center 60px */
-      background-repeat: no-repeat;
-      background-size: calc(85% - 50px) auto;  /* Changed from -30px to -50px */
+      background-image: url('Background illustration.png'), url('BG.png');
+      background-position: calc(37% - 10px) 60px, center center;
+      background-repeat: no-repeat, repeat;
+      background-size: calc(85% - 50px) auto, 150% auto;
+      background-blend-mode: normal, overlay;
       overflow: hidden;
     }
 
