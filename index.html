@@ -361,86 +361,76 @@
     window.addEventListener('resize', updateScreenSize);
 
     // Cat Animation
-    const frames = [
-      'stagnant',
-      'walk1', 'walk2', 'walk1',
-      'walk1', 'walk2', 'walk1',
-      'walk1', 'walk2', 'eating'
-    ];
+    const frames = ['walk1', 'walk2', 'walk1', 'walk1', 'walk2', 'walk1', 'walk1', 'walk2', 'eating'];
     const bowls = ['fullBowl', 'halfBowl', 'quarterBowl', 'emptyBowl'];
+
+    const catContainer = document.querySelector('.cat-container');
     let isAnimating = false;
+
+    function showCatFrame(frameId) {
+      document.querySelectorAll('.cat-frame').forEach(f => f.classList.remove('active'));
+      document.getElementById(frameId).classList.add('active');
+    }
+
+    function updateBowlStage(stageIndex) {
+      document.querySelectorAll('.bowl-image').forEach(b => b.classList.remove('active'));
+      document.getElementById(bowls[stageIndex]).classList.add('active');
+    }
 
     function startAnimation() {
       if (isAnimating) return;
       isAnimating = true;
 
-      // Set full bowl immediately when animation starts
-      document.querySelectorAll('.bowl-image').forEach(b => b.classList.remove('active'));
-      document.getElementById('fullBowl').classList.add('active');
-
-      const catContainer = document.querySelector('.cat-container');
       const startPosition = 700;
       const endPosition = 40;
-      let frameIndex = 0;
+      const totalFrames = frames.length;
+      const frameDuration = 200;
 
-      const frameInterval = setInterval(() => {
-        document.querySelectorAll('.cat-frame').forEach(f => f.classList.remove('active'));
+      // Start with full bowl
+      updateBowlStage(0);
 
-        if (frameIndex < frames.length) {
-          const frame = document.getElementById(frames[frameIndex]);
-          frame.classList.add('active');
-          
-          const progress = frameIndex / (frames.length - 1);
-          const currentLeft = startPosition - (progress * (startPosition - endPosition));
-          catContainer.style.left = `${currentLeft}px`;
-          
-          // When cat reaches the bowl (last frame)
-          if (frameIndex === frames.length - 1) {
-            catContainer.style.left = `${endPosition + 39}px`;
-            catContainer.style.bottom = '108px'; // Keep eating frame position unchanged
-            catContainer.style.width = '103px'; // Increase from 102px to 103px
-            catContainer.style.height = '103px'; // Increase from 102px to 103px
-            // Keep cat eating while bowl empties
-            setTimeout(() => {
-              document.querySelectorAll('.bowl-image').forEach(b => b.classList.remove('active'));
-              document.getElementById('halfBowl').classList.add('active');
-            }, 500);
-            setTimeout(() => {
-              document.querySelectorAll('.bowl-image').forEach(b => b.classList.remove('active'));
-              document.getElementById('quarterBowl').classList.add('active');
-            }, 1000);
-            setTimeout(() => {
-              document.querySelectorAll('.bowl-image').forEach(b => b.classList.remove('active'));
-              document.getElementById('emptyBowl').classList.add('active');
-              // Only reset animation after bowl is empty
-              setTimeout(() => {
-                catContainer.style.opacity = '1';
-                catContainer.style.left = `${startPosition}px`;
-                catContainer.style.bottom = '102px'; // Reset to original position
-                catContainer.style.width = '100px'; // Reset width
-                catContainer.style.height = '100px'; // Reset height
-                document.querySelectorAll('.cat-frame').forEach(f => f.classList.remove('active'));
-                document.getElementById('stagnant').classList.add('active'); // Show stagnant cat
-                isAnimating = false;
-              }, 500);
-            }, 1500);
-             
-            clearInterval(frameInterval); // Stop frame changes
-          } else {
-            catContainer.style.bottom = '104px'; // Keep other frames 4px higher total
-          }
-        } else {
-          clearInterval(frameInterval);
+      function animateFrame(index) {
+        if (index >= totalFrames) {
+          // After eating animation finishes, update bowl stages
+          setTimeout(() => updateBowlStage(1), 500);
+          setTimeout(() => updateBowlStage(2), 1000);
           setTimeout(() => {
-            catContainer.style.opacity = '0';
-            catContainer.style.left = `${startPosition}px`;
-            document.querySelectorAll('.cat-frame').forEach(f => f.classList.remove('active'));
-            isAnimating = false;
-          }, 1000);
+            updateBowlStage(3);
+            // Reset everything
+            setTimeout(() => {
+              catContainer.style.left = `${startPosition}px`;
+              catContainer.style.bottom = '102px';
+              catContainer.style.width = '100px';
+              catContainer.style.height = '100px';
+              showCatFrame('stagnant');
+              isAnimating = false;
+            }, 500);
+          }, 1500);
+          return;
         }
 
-        frameIndex++;
-      }, 200); // Faster animation timing
+        const frameId = frames[index];
+        showCatFrame(frameId);
+
+        const progress = index / (totalFrames - 1);
+        const currentLeft = startPosition - (progress * (startPosition - endPosition));
+        catContainer.style.left = `${currentLeft}px`;
+
+        if (frameId === 'eating') {
+          catContainer.style.left = `${endPosition + 39}px`;
+          catContainer.style.bottom = '108px';
+          catContainer.style.width = '105px'; // Increased from 103px to 105px
+          catContainer.style.height = '105px'; // Increased from 103px to 105px
+        } else {
+          catContainer.style.bottom = '104px';
+          catContainer.style.width = '100px';
+          catContainer.style.height = '100px';
+        }
+
+        setTimeout(() => animateFrame(index + 1), frameDuration);
+      }
+
+      animateFrame(0);
     }
   </script>
 </body>
