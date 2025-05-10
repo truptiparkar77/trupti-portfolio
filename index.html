@@ -396,33 +396,35 @@
           
           // When cat reaches the bowl (last frame)
           if (frameIndex === frames.length - 1) {
-            catContainer.style.left = `${endPosition + 37}px`; // 35px + 2px more right shift
-            catContainer.style.bottom = '106px'; // 104px + 2px more up shift
-            
+            catContainer.style.left = `${endPosition + 39}px`;
+            catContainer.style.bottom = '108px';
+            catContainer.style.width = '103px'; // Increase from 102px to 103px
+            catContainer.style.height = '103px'; // Increase from 102px to 103px
             // Keep cat eating while bowl empties
             setTimeout(() => {
               document.querySelectorAll('.bowl-image').forEach(b => b.classList.remove('active'));
               document.getElementById('halfBowl').classList.add('active');
             }, 500);
-
             setTimeout(() => {
               document.querySelectorAll('.bowl-image').forEach(b => b.classList.remove('active'));
               document.getElementById('quarterBowl').classList.add('active');
             }, 1000);
-
             setTimeout(() => {
               document.querySelectorAll('.bowl-image').forEach(b => b.classList.remove('active'));
               document.getElementById('emptyBowl').classList.add('active');
-              
               // Only reset animation after bowl is empty
               setTimeout(() => {
-                catContainer.style.opacity = '0';
+                catContainer.style.opacity = '1';
                 catContainer.style.left = `${startPosition}px`;
+                catContainer.style.bottom = '100px'; // Reset to original position
+                catContainer.style.width = '100px'; // Reset width
+                catContainer.style.height = '100px'; // Reset height
                 document.querySelectorAll('.cat-frame').forEach(f => f.classList.remove('active'));
+                document.getElementById('stagnant').classList.add('active'); // Show stagnant cat
                 isAnimating = false;
               }, 500);
             }, 1500);
-            
+             
             clearInterval(frameInterval); // Stop frame changes
           }
         } else {
