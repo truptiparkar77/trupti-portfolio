@@ -239,9 +239,22 @@
       opacity: 1;
     }
 
+    .stagnant-cat-container {
+      position: fixed;
+      bottom: 100px;
+      left: 700px;
+      transform: translateX(-50%);
+      z-index: 2;
+    }
+
+    .stagnant-cat {
+      width: 100px;
+      height: auto;
+    }
+
     .doormat-container {
       position: fixed;
-      bottom: 2px;
+      bottom: -20px;
       left: calc(50% + 10px); /* Move 10px to the right */
       transform: translateX(-50%);
       z-index: 1;
@@ -305,6 +318,11 @@
       <img src="Contact me Icon.png" alt="Contact Me" />
       <div>Contact Me</div>
     </div>
+  </div>
+
+  <!-- Stagnant Cat -->
+  <div class="stagnant-cat-container">
+    <img src="Cat stagnant state.png" alt="Stagnant Cat" class="stagnant-cat" />
   </div>
 
   <!-- Doormat -->
