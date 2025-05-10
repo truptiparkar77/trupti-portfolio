@@ -175,7 +175,7 @@
       text-align: center;
       font-size: 20px;
       font-family: 'Windows Regular', Arial, sans-serif;
-      z-index: 1;
+      z-index: 3; /* Increased to be above cat frames */
       cursor: pointer;
       transition: transform 0.2s ease;
       width: 80px;
@@ -220,37 +220,26 @@
     /* Cat Animation */
     .cat-container {
       position: fixed;
-      bottom: 178px;
-      left: 50%;
+      bottom: 100px; /* Changed from 300px to move animation down by 200px */
+      left: 700px;
       transform: translateX(-50%);
-      opacity: 0;
-      transition: opacity 0.3s ease;
-      z-index: 0;
+      opacity: 1;
+      transition: all 0.3s linear;
+      z-index: 2;
+      width: 100px;
+      height: 100px;
     }
 
     .cat-frame {
       position: absolute;
-      width: 130px;
+      width: 100%;
+      height: 100%;
       opacity: 0;
-      transition: all 0.5s ease;
+      transition: opacity 0.2s ease;
+      filter: drop-shadow(0 5px 3px rgba(0, 0, 0, 0.2));
     }
 
     .cat-frame.active {
-      opacity: 1;
-    }
-
-    .stagnant-cat-container {
-      position: fixed;
-      bottom: 100px;
-      left: 700px;
-      transform: translateX(-50%);
-      z-index: 2;
-    }
-
-    .stagnant-cat {
-      width: 100px;
-      height: auto;
-      filter: drop-shadow(0 5px 3px rgba(0, 0, 0, 0.2));
       opacity: 0.95;
     }
 
@@ -322,11 +311,6 @@
     </div>
   </div>
 
-  <!-- Stagnant Cat -->
-  <div class="stagnant-cat-container">
-    <img src="Cat stagnant state.png" alt="Stagnant Cat" class="stagnant-cat" />
-  </div>
-
   <!-- Doormat -->
   <div class="doormat-container">
     <img src="Doormat.png" alt="Doormat" class="doormat-image" />
@@ -343,10 +327,10 @@
 
   <!-- Cat Animation Frames -->
   <div class="cat-container">
-    <img src="4.png?v=1" alt="Cat Frame 4" class="cat-frame" id="frame4" />
-    <img src="1.png?v=1" alt="Cat Frame 1" class="cat-frame" id="frame1" />
-    <img src="2.png?v=1" alt="Cat Frame 2" class="cat-frame" id="frame2" />
-    <img src="3.png?v=1" alt="Cat Frame 3" class="cat-frame" id="frame3" />
+    <img src="Cat stagnant state.png" alt="Cat Stagnant" class="cat-frame active" id="stagnant" />
+    <img src="walk1.png" alt="Walking 1" class="cat-frame" id="walk1" />
+    <img src="walk2.png" alt="Walking 2" class="cat-frame" id="walk2" />
+    <img src="Cat eating.png" alt="Cat Eating" class="cat-frame" id="eating" />
   </div>
 
   <!-- Screen Size Debug -->
@@ -377,7 +361,12 @@
     window.addEventListener('resize', updateScreenSize);
 
     // Cat Animation
-    const frames = ['frame4', 'frame1', 'frame2', 'frame3', 'frame4'];
+    const frames = [
+      'stagnant',
+      'walk1', 'walk2', 'walk1',
+      'walk1', 'walk2', 'walk1',
+      'walk1', 'walk2', 'eating'
+    ];
     const bowls = ['fullBowl', 'halfBowl', 'quarterBowl', 'emptyBowl'];
     let isAnimating = false;
 
@@ -390,11 +379,9 @@
       document.getElementById('fullBowl').classList.add('active');
 
       const catContainer = document.querySelector('.cat-container');
-      catContainer.style.opacity = '1';
-
+      const startPosition = 700;
+      const endPosition = 40;
       let frameIndex = 0;
-      const totalDistance = window.innerWidth / 2 - 200;
-      let currentPosition = 0;
 
       const frameInterval = setInterval(() => {
         document.querySelectorAll('.cat-frame').forEach(f => f.classList.remove('active'));
@@ -402,40 +389,54 @@
         if (frameIndex < frames.length) {
           const frame = document.getElementById(frames[frameIndex]);
           frame.classList.add('active');
-          currentPosition = (frameIndex / (frames.length - 1)) * totalDistance;
-          catContainer.style.transform = `translateX(calc(-50% - ${currentPosition}px))`;
-
+          
+          const progress = frameIndex / (frames.length - 1);
+          const currentLeft = startPosition - (progress * (startPosition - endPosition));
+          catContainer.style.left = `${currentLeft}px`;
+          
           // When cat reaches the bowl (last frame)
           if (frameIndex === frames.length - 1) {
+            catContainer.style.left = `${endPosition + 37}px`; // 35px + 2px more right shift
+            catContainer.style.bottom = '106px'; // 104px + 2px more up shift
+            
+            // Keep cat eating while bowl empties
             setTimeout(() => {
               document.querySelectorAll('.bowl-image').forEach(b => b.classList.remove('active'));
               document.getElementById('halfBowl').classList.add('active');
             }, 500);
 
-            // Change to quarter bowl
             setTimeout(() => {
               document.querySelectorAll('.bowl-image').forEach(b => b.classList.remove('active'));
               document.getElementById('quarterBowl').classList.add('active');
             }, 1000);
 
-            // Change to empty bowl
             setTimeout(() => {
               document.querySelectorAll('.bowl-image').forEach(b => b.classList.remove('active'));
               document.getElementById('emptyBowl').classList.add('active');
+              
+              // Only reset animation after bowl is empty
+              setTimeout(() => {
+                catContainer.style.opacity = '0';
+                catContainer.style.left = `${startPosition}px`;
+                document.querySelectorAll('.cat-frame').forEach(f => f.classList.remove('active'));
+                isAnimating = false;
+              }, 500);
             }, 1500);
+            
+            clearInterval(frameInterval); // Stop frame changes
           }
         } else {
           clearInterval(frameInterval);
           setTimeout(() => {
             catContainer.style.opacity = '0';
-            catContainer.style.transform = 'translateX(-50%)';
+            catContainer.style.left = `${startPosition}px`;
             document.querySelectorAll('.cat-frame').forEach(f => f.classList.remove('active'));
             isAnimating = false;
           }, 1000);
         }
 
         frameIndex++;
-      }, 500);
+      }, 200); // Faster animation timing
     }
   </script>
 </body>
