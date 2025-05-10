@@ -220,7 +220,7 @@
     /* Cat Animation */
     .cat-container {
       position: fixed;
-      bottom: 104px; /* Changed from 102px to move animation up by 2px more */
+      bottom: 110.5px; /* Changed from 109px to move up by 1.5px more */
       left: 700px;
       transform: translateX(-50%);
       opacity: 1;
@@ -330,6 +330,7 @@
     <img src="Cat stagnant state.png" alt="Cat Stagnant" class="cat-frame active" id="stagnant" />
     <img src="walk1.png" alt="Walking 1" class="cat-frame" id="walk1" />
     <img src="walk2.png" alt="Walking 2" class="cat-frame" id="walk2" />
+    <img src="walk3.png" alt="Walking 3" class="cat-frame" id="walk3" />
     <img src="Cat eating.png" alt="Cat Eating" class="cat-frame" id="eating" />
   </div>
 
@@ -361,7 +362,13 @@
     window.addEventListener('resize', updateScreenSize);
 
     // Cat Animation
-    const frames = ['walk1', 'walk2', 'walk1', 'walk1', 'walk2', 'walk1', 'walk1', 'walk2', 'eating'];
+    const frames = [
+      'stagnant',
+      'walk1', 'walk2', 'walk3',
+      'walk1', 'walk2', 'walk3',
+      'walk1', 'walk2', 'walk3',
+      'eating'
+    ];
     const bowls = ['fullBowl', 'halfBowl', 'quarterBowl', 'emptyBowl'];
 
     const catContainer = document.querySelector('.cat-container');
@@ -419,10 +426,10 @@
         if (frameId === 'eating') {
           catContainer.style.left = `${endPosition + 39}px`;
           catContainer.style.bottom = '108px';
-          catContainer.style.width = '105px'; // Increased from 103px to 105px
-          catContainer.style.height = '105px'; // Increased from 103px to 105px
+          catContainer.style.width = '110px';
+          catContainer.style.height = '110px';
         } else {
-          catContainer.style.bottom = '104px';
+          catContainer.style.bottom = '110.5px'; // Changed from 109px to move up by 1.5px more
           catContainer.style.width = '100px';
           catContainer.style.height = '100px';
         }
