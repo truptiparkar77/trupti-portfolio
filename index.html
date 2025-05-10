@@ -22,7 +22,6 @@
       margin: 0;
       padding: 0;
       box-sizing: border-box;
-      cursor: none;
     }
 
     body {
@@ -44,11 +43,26 @@
       background-repeat: no-repeat;
       position: fixed;
       pointer-events: none;
-      z-index: 9999;
+      z-index: 10001;
     }
 
-    a, button, [onclick], .icon {
-      cursor: url('Cursor.png') 16 16, pointer;
+    .clickable {
+      cursor: none !important;
+    }
+
+    .social-icon {
+      width: 60px;
+      height: 60px;
+      transition: transform 0.3s ease;
+      pointer-events: auto;
+      z-index: 10000;
+    }
+
+    .header-right a {
+      text-decoration: none;
+      pointer-events: auto;
+      display: block;
+      z-index: 10000;
     }
 
     /* Header */
@@ -96,12 +110,6 @@
     .header-right {
       display: flex;
       gap: 20px;
-    }
-
-    .social-icon {
-      width: 60px;
-      height: 60px;
-      transition: transform 0.3s ease;
     }
 
     .linkedin-icon:hover {
@@ -271,14 +279,14 @@
       </a>
     </div>
     <div class="header-right">
-      <a href="https://www.linkedin.com/in/trupti-parker-803663b1" target="_blank">
-        <img src="linkedin-icon.png" alt="LinkedIn" class="social-icon linkedin-icon" />
+      <a href="https://www.linkedin.com/in/trupti-parker-803663b1?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app" target="_blank" class="clickable">
+        <img src="linkedin-icon.png" alt="LinkedIn" class="social-icon linkedin-icon clickable" />
       </a>
-      <a href="https://www.instagram.com/aesthethi.cc" target="_blank">
-        <img src="instagram-icon.png" alt="Instagram" class="social-icon instagram-icon" />
+      <a href="https://www.instagram.com/aesthethi.cc?igsh=cWxzbHJvYWowZHVi" target="_blank" class="clickable">
+        <img src="instagram-icon.png" alt="Instagram" class="social-icon instagram-icon clickable" />
       </a>
-      <a href="https://www.behance.net/truptiparker" target="_blank">
-        <img src="behance-icon.png" alt="Behance" class="social-icon behance-icon" />
+      <a href="https://www.behance.net/truptiparker" target="_blank" class="clickable">
+        <img src="behance-icon.png" alt="Behance" class="social-icon behance-icon clickable" />
       </a>
     </div>
   </header>
