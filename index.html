@@ -220,7 +220,7 @@
     /* Cat Animation */
     .cat-container {
       position: fixed;
-      bottom: 100px; /* Changed from 300px to move animation down by 200px */
+      bottom: 104px; /* Changed from 102px to move animation up by 2px more */
       left: 700px;
       transform: translateX(-50%);
       opacity: 1;
@@ -397,7 +397,7 @@
           // When cat reaches the bowl (last frame)
           if (frameIndex === frames.length - 1) {
             catContainer.style.left = `${endPosition + 39}px`;
-            catContainer.style.bottom = '108px';
+            catContainer.style.bottom = '108px'; // Keep eating frame position unchanged
             catContainer.style.width = '103px'; // Increase from 102px to 103px
             catContainer.style.height = '103px'; // Increase from 102px to 103px
             // Keep cat eating while bowl empties
@@ -416,7 +416,7 @@
               setTimeout(() => {
                 catContainer.style.opacity = '1';
                 catContainer.style.left = `${startPosition}px`;
-                catContainer.style.bottom = '100px'; // Reset to original position
+                catContainer.style.bottom = '102px'; // Reset to original position
                 catContainer.style.width = '100px'; // Reset width
                 catContainer.style.height = '100px'; // Reset height
                 document.querySelectorAll('.cat-frame').forEach(f => f.classList.remove('active'));
@@ -426,6 +426,8 @@
             }, 1500);
              
             clearInterval(frameInterval); // Stop frame changes
+          } else {
+            catContainer.style.bottom = '104px'; // Keep other frames 4px higher total
           }
         } else {
           clearInterval(frameInterval);
