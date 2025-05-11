@@ -33,18 +33,23 @@
       background-size: calc(85% - 50px) auto, 150% auto;
       background-blend-mode: normal, overlay;
       overflow: hidden;
+      cursor: none !important;
     }
 
     /* Custom Cursor */
     #custom-cursor {
-      width: 32px;
-      height: 32px;
+      width: 33px;
+      height: 33px;
       background-image: url('Cursor.png');
       background-size: contain;
       background-repeat: no-repeat;
       position: fixed;
       pointer-events: none;
-      z-index: 10001;
+      z-index: 2147483647;
+    }
+
+    * {
+      cursor: none !important;
     }
 
     .clickable {
@@ -431,8 +436,8 @@
     // Custom Cursor Movement
     document.addEventListener('mousemove', (e) => {
       const cursor = document.getElementById('custom-cursor');
-      cursor.style.left = `${e.clientX - 16}px`;
-      cursor.style.top = `${e.clientY - 16}px`;
+      cursor.style.left = `${e.clientX - 16.5}px`;
+      cursor.style.top = `${e.clientY - 16.5}px`;
     });
 
     // Screen Size Debug Info
