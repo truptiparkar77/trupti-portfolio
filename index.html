@@ -9,12 +9,12 @@
     /* Fonts */
     @font-face {
       font-family: 'Upheaval';
-      src: url('upheavtt.ttf') format('truetype');
+      src: url('UpheavTT.ttf') format('truetype');
     }
 
     @font-face {
       font-family: 'Windows Regular';
-      src: url('Windows Regular.ttf') format('truetype');
+      src: url('Windows_Regular.ttf') format('truetype');
     }
 
     /* General Reset */
@@ -27,7 +27,7 @@
     body {
       font-family: Arial, sans-serif;
       background-color: #f4f2ea;
-      background-image: url('Background illustration.png'), url('BG.png');
+      background-image: url('background_illustration.png'), url('bg.png');
       background-position: calc(37% - 10px) 60px, center center;
       background-repeat: no-repeat, repeat;
       background-size: calc(85% - 50px) auto, 150% auto;
@@ -40,7 +40,7 @@
     #custom-cursor {
       width: 33px;
       height: 33px;
-      background-image: url('Cursor.png');
+      background-image: url('cursor.png');
       background-size: contain;
       background-repeat: no-repeat;
       position: fixed;
@@ -119,17 +119,17 @@
     }
 
     .linkedin-icon:hover {
-      content: url('Hover_linkedin-icon.png');
+      content: url('hover_linkedin_icon.png');
       transform: scale(1.033);
     }
 
     .instagram-icon:hover {
-      content: url('Hover_instagram-icon.png');
+      content: url('hover_instagram_icon.png');
       transform: scale(1.033);
     }
 
     .behance-icon:hover {
-      content: url('Hover_behance-icon.png');
+      content: url('hover_behance_icon.png');
       transform: scale(1.033);
     }
 
@@ -226,7 +226,7 @@
     /* Cat Animation */
     .cat-container {
       position: fixed;
-      bottom: 110.5px; /* Changed from 109px to move up by 1.5px more */
+      bottom: 107.5px; /* Changed from 110.5px to move down by 3px */
       left: 700px;
       transform: translateX(-50%);
       opacity: 1;
@@ -316,7 +316,7 @@
     }
 
     .idb-button:hover img {
-      content: url('IDB button hover.png');
+      content: url('idb_button_hover.png');
     }
 
     .idb-button a {
@@ -359,19 +359,19 @@
   <header>
     <div class="header-left">
       <a href="index.html">
-        <img src="logo.png" alt="Logo" class="logo" />
+        <img src="Logo.png" alt="Logo" class="logo" />
         <span class="site-name">Trupti Parkar</span>
       </a>
     </div>
     <div class="header-right">
       <a href="https://www.linkedin.com/in/trupti-parker-803663b1?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app" target="_blank" class="clickable">
-        <img src="linkedin-icon.png" alt="LinkedIn" class="social-icon linkedin-icon clickable" />
+        <img src="linkedin_icon.png" alt="LinkedIn" class="social-icon linkedin-icon clickable" />
       </a>
       <a href="https://www.instagram.com/aesthethi.cc?igsh=cWxzbHJvYWowZHVi" target="_blank" class="clickable">
-        <img src="instagram-icon.png" alt="Instagram" class="social-icon instagram-icon clickable" />
+        <img src="instagram_icon.png" alt="Instagram" class="social-icon instagram-icon clickable" />
       </a>
       <a href="https://www.behance.net/truptiparker" target="_blank" class="clickable">
-        <img src="behance-icon.png" alt="Behance" class="social-icon behance-icon clickable" />
+        <img src="behance_icon.png" alt="Behance" class="social-icon behance-icon clickable" />
       </a>
     </div>
   </header>
@@ -379,34 +379,34 @@
   <!-- Desktop Icons -->
   <div class="desktop">
     <div class="icon" onclick="location.href='projects.html'">
-      <img src="Projects Icon.png" alt="Projects" />
+      <img src="projects_icon.png" alt="Projects" />
       <div>Projects</div>
     </div>
     <div class="icon" onclick="location.href='about.html'">
-      <img src="logo.png" alt="About Me" />
+      <img src="Logo.png" alt="About Me" />
       <div>About Me</div>
     </div>
     <div class="icon" onclick="location.href='contact.html'">
-      <img src="Contact me Icon.png" alt="Contact Me" />
+      <img src="contact_me_icon.png" alt="Contact Me" />
       <div>Contact Me</div>
     </div>
   </div>
 
   <!-- Intro Box -->
   <div class="intro-box">
-    <img src="Intro box.png" alt="Intro">
+    <img src="intro_box.png" alt="Intro">
   </div>
 
   <!-- IDB Button -->
   <div class="idb-button clickable">
     <a href="https://www.instagram.com/aesthethi.cc?igsh=cWxzbHJvYWowZHVi" target="_blank">
-      <img src="IDB button.png" alt="Instagram Dialog Button">
+      <img src="idb_button.png" alt="Instagram Dialog Button">
     </a>
   </div>
 
   <!-- Instagram Dialogue Box -->
   <div class="instagram-dialogue">
-    <img src="Instagram dialogue box.png" alt="Instagram Dialogue">
+    <img src="instagram_dialogue_box.png" alt="Instagram Dialogue">
   </div>
 
   <!-- Doormat -->
@@ -416,20 +416,20 @@
 
   <!-- Bowl -->
   <div class="bowl-container" onclick="startAnimation()">
-    <img src="Full bowl.png" alt="Full Bowl" class="bowl-image" id="fullBowl" />
-    <img src="Half filled Bowl.png" alt="Half Bowl" class="bowl-image" id="halfBowl" />
-    <img src="Quarter filled Bowl.png" alt="Quarter Bowl" class="bowl-image" id="quarterBowl" />
-    <img src="Empty Bowl.png" alt="Empty Bowl" class="bowl-image active" id="emptyBowl" />
+    <img src="full_bowl.png" alt="Full Bowl" class="bowl-image" id="fullBowl" />
+    <img src="half_filled_bowl.png" alt="Half Bowl" class="bowl-image" id="halfBowl" />
+    <img src="quarter_filled_bowl.png" alt="Quarter Bowl" class="bowl-image" id="quarterBowl" />
+    <img src="empty_bowl.png" alt="Empty Bowl" class="bowl-image active" id="emptyBowl" />
     <div class="title">Fill Bowl</div>
   </div>
 
   <!-- Cat Animation Frames -->
   <div class="cat-container">
-    <img src="Cat stagnant state.png" alt="Cat Stagnant" class="cat-frame active" id="stagnant" />
-    <img src="walk1.png" alt="Walking 1" class="cat-frame" id="walk1" />
-    <img src="walk2.png" alt="Walking 2" class="cat-frame" id="walk2" />
-    <img src="walk3.png" alt="Walking 3" class="cat-frame" id="walk3" />
-    <img src="Cat eating.png" alt="Cat Eating" class="cat-frame" id="eating" />
+    <img src="stagnant_cat.png" alt="Cat Stagnant" class="cat-frame active" id="stagnant" />
+    <img src="Walk1.png" alt="Walking 1" class="cat-frame" id="walk1" />
+    <img src="Walk2.png" alt="Walking 2" class="cat-frame" id="walk2" />
+    <img src="Walk3.png" alt="Walking 3" class="cat-frame" id="walk3" />
+    <img src="cat_eating.png" alt="Cat Eating" class="cat-frame" id="eating" />
   </div>
 
   <!-- Screen Size Debug -->
@@ -465,6 +465,7 @@
       'walk1', 'walk2', 'walk3',
       'walk1', 'walk2', 'walk3',
       'walk1', 'walk2', 'walk3',
+      'walk1', 'walk2', 'walk3', // Added extra walk cycle
       'eating'
     ];
     const bowls = ['fullBowl', 'halfBowl', 'quarterBowl', 'emptyBowl'];
@@ -492,16 +493,15 @@
       isAnimating = true;
 
       const startPosition = 700;
-      const endPosition = 40;
+      const endPosition = 40; // Base position of the bowl area
       const totalFrames = frames.length;
-      const frameDuration = 300; // Increased from 200 to allow for smoother transitions
+      const frameDuration = 300; 
 
       // Start with full bowl
       updateBowlStage(0);
 
       function animateFrame(index) {
         if (index >= totalFrames) {
-          // After eating animation finishes, update bowl stages and start walk back
           setTimeout(() => updateBowlStage(1), 500);
           setTimeout(() => updateBowlStage(2), 1000);
           setTimeout(() => {
@@ -514,43 +514,57 @@
         const frameId = frames[index];
         showCatFrame(frameId);
 
-        const progress = index / (totalFrames - 1);
-        const currentLeft = startPosition - (progress * (startPosition - endPosition));
-        catContainer.style.left = `${currentLeft}px`;
+        const eatingPositionLeft = endPosition + 39; // Actual left position when cat is eating
+
+        // Calculate target left for this frame based on overall progress
+        const progress = (totalFrames > 1) ? index / (totalFrames - 1) : 0;
+        let currentLeftTarget;
 
         if (frameId === 'eating') {
-          catContainer.style.left = `${endPosition + 39}px`;
-          catContainer.style.bottom = '107px';
+            currentLeftTarget = eatingPositionLeft;
+        } else if (frameId === 'stagnant' && index === 0) { // Initial stagnant
+            currentLeftTarget = startPosition;
+        } else { // Walking frames interpolate between start and eating position
+            currentLeftTarget = startPosition + progress * (eatingPositionLeft - startPosition);
+        }
+        catContainer.style.left = `${currentLeftTarget}px`;
+
+        if (frameId === 'eating') {
+          // catContainer.style.left is already set
+          catContainer.style.bottom = '104px'; // Adjusted from 107px
           catContainer.style.width = '110px';
           catContainer.style.height = '110px';
+          catContainer.style.filter = 'drop-shadow(0 9px 4px rgba(0, 0, 0, 0.14))'; // Match walk shadow or specific eating shadow
         } else if (frameId.startsWith('walk')) {
-          catContainer.style.bottom = '108.5px';
+          catContainer.style.bottom = '105.5px'; // Adjusted from 108.5px
           catContainer.style.width = '112px';
           catContainer.style.height = '112px';
           catContainer.style.filter = 'drop-shadow(0 9px 4px rgba(0, 0, 0, 0.14))';
-        } else if (frameId === 'stagnant') {
-          catContainer.style.bottom = '110px'; // Increased from 110.5px to move up by 2px
-          catContainer.style.width = '90px';  // Reduced from 93px
-          catContainer.style.height = '90px'; // Reduced from 93px
-          catContainer.style.filter = 'none'; // Reset shadow
-        } else {
-          catContainer.style.bottom = '108px';
-          catContainer.style.width = '100px';
-          catContainer.style.height = '100px';
-          catContainer.style.filter = 'none'; // Reset shadow
+        } else if (frameId === 'stagnant') { // Initial stagnant state
+          // catContainer.style.left is already set
+          catContainer.style.bottom = '107px';  // Adjusted from 110px
+          catContainer.style.width = '90px';
+          catContainer.style.height = '90px';
+          catContainer.style.filter = 'none'; 
         }
+        // Removed generic else block as all frame types are handled
 
         setTimeout(() => animateFrame(index + 1), frameDuration);
       }
 
       function walkBackSequence() {
         const walkBackFrames = [
-          'eating',
+          'eating', // Represents the state before starting to walk back
           'walk1', 'walk2', 'walk3',
           'walk1', 'walk2', 'walk3',
           'walk1', 'walk2', 'walk3',
+          'walk1', 'walk2', // Removed last 'walk3'
           'stagnant'
         ];
+        
+        const walkBackInitialEatingLeft = endPosition + 32; // Cat's L-coord when "eating" and about to walk back (flipped)
+        const walkBackFinalStagnantLeft = startPosition;    // Cat's final L-coord (original start)
+
         let step = 0;
 
         function animateWalkBack() {
@@ -562,35 +576,40 @@
           const frameId = walkBackFrames[step];
           showCatFrame(frameId);
 
-          if (frameId === 'eating') {
-            catContainer.style.left = `${endPosition + 32}px`;
-            catContainer.style.bottom = '107px';
+          if (frameId === 'eating') { // Frame before starting walk back, cat is turned
+            catContainer.style.left = `${walkBackInitialEatingLeft}px`;
+            catContainer.style.bottom = '104px'; // Adjusted from 107px
             catContainer.style.width = '110px';
             catContainer.style.height = '110px';
+            catContainer.style.transform = 'scaleX(-1)'; // Flipped
+            catContainer.style.filter = 'drop-shadow(0 9px 4px rgba(0, 0, 0, 0.14))'; // Consistent shadow
           } else if (frameId.startsWith('walk')) {
-            const progress = (step - 1) / (walkBackFrames.length - 2);
-            const currentLeft = (endPosition - 7) + (progress * (startPosition - endPosition));
+            const numWalkFramesInSeq = walkBackFrames.length - 2; // Total walk frames in this sequence
+            // Progress for walk: 0 for first walk frame, 1 for last walk frame
+            const progress = (numWalkFramesInSeq > 1) ? (step - 1) / (numWalkFramesInSeq - 1) : 0;
+            
+            const currentLeft = walkBackInitialEatingLeft + progress * (walkBackFinalStagnantLeft - walkBackInitialEatingLeft);
             
             catContainer.style.left = `${currentLeft}px`;
-            catContainer.style.bottom = '108.5px';
+            catContainer.style.bottom = '105.5px'; // Adjusted from 108.5px
             catContainer.style.width = '112px';
             catContainer.style.height = '112px';
             catContainer.style.filter = 'drop-shadow(0 9px 4px rgba(0, 0, 0, 0.14))';
-            catContainer.style.transform = 'scaleX(-1)';
-          } else if (frameId === 'stagnant') {
-            catContainer.style.transform = 'translateX(-50%)'; // Reset transform immediately
-            catContainer.style.left = `${startPosition - 7}px`;
-            catContainer.style.bottom = '110px';
-            catContainer.style.width = '90px';  // Reduced from 93px
-            catContainer.style.height = '90px'; // Reduced from 93px
-            catContainer.style.filter = 'none';
+            catContainer.style.transform = 'scaleX(-1)'; // Keep flipped
+          } else if (frameId === 'stagnant') { // Final stagnant frame
+            catContainer.style.left = `${walkBackFinalStagnantLeft}px`; // Exact final position
+            catContainer.style.transform = 'translateX(-50%)'; // Reset transform to initial (unflipped, centered)
+            catContainer.style.bottom = '107px'; // Adjusted from 110px
+            catContainer.style.width = '90px';
+            catContainer.style.height = '90px';
+            catContainer.style.filter = 'none'; // Reset shadow
           }
 
           step++;
           setTimeout(animateWalkBack, frameDuration);
         }
 
-        setTimeout(animateWalkBack, 500);
+        setTimeout(animateWalkBack, 500); // Delay before cat starts walking back
       }
 
       animateFrame(0);

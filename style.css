@@ -1,0 +1,31 @@
+.frame {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transform: translateX(100%);
+    transition: transform 0.7s ease-in-out, opacity 0.7s ease-in-out; /* Increased duration */
+    visibility: hidden; /* Initially hidden */
+}
+
+.frame.active {
+    opacity: 1;
+    transform: translateX(0);
+    visibility: visible; /* Make active frame visible */
+}
+
+.frame.exit-left {
+    transform: translateX(-100%);
+    opacity: 0;
+    visibility: hidden; /* Hide after exit */
+}
+
+.frame.exit-right {
+    transform: translateX(100%);
+    opacity: 0;
+    visibility: hidden; /* Hide after exit */
+}
