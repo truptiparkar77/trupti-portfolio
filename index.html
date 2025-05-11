@@ -487,20 +487,12 @@
 
       function animateFrame(index) {
         if (index >= totalFrames) {
-          // After eating animation finishes, update bowl stages
+          // After eating animation finishes, update bowl stages and start walk back
           setTimeout(() => updateBowlStage(1), 500);
           setTimeout(() => updateBowlStage(2), 1000);
           setTimeout(() => {
             updateBowlStage(3);
-            // Reset everything
-            setTimeout(() => {
-              catContainer.style.left = `${startPosition}px`;
-              catContainer.style.bottom = '102px';
-              catContainer.style.width = '100px';
-              catContainer.style.height = '100px';
-              showCatFrame('stagnant');
-              isAnimating = false;
-            }, 500);
+            walkBackSequence();
           }, 1500);
           return;
         }
@@ -535,6 +527,56 @@
         }
 
         setTimeout(() => animateFrame(index + 1), frameDuration);
+      }
+
+      function walkBackSequence() {
+        const walkBackFrames = [
+          'eating',
+          'walk1', 'walk2', 'walk3',
+          'walk1', 'walk2', 'walk3',
+          'walk1', 'walk2', 'walk3',
+          'stagnant'
+        ];
+        let step = 0;
+
+        function animateWalkBack() {
+          if (step >= walkBackFrames.length) {
+            isAnimating = false;
+            return;
+          }
+
+          const frameId = walkBackFrames[step];
+          showCatFrame(frameId);
+
+          if (frameId === 'eating') {
+            catContainer.style.left = `${endPosition + 32}px`;
+            catContainer.style.bottom = '107px';
+            catContainer.style.width = '110px';
+            catContainer.style.height = '110px';
+          } else if (frameId.startsWith('walk')) {
+            const progress = (step - 1) / (walkBackFrames.length - 2);
+            const currentLeft = (endPosition - 7) + (progress * (startPosition - endPosition));
+            
+            catContainer.style.left = `${currentLeft}px`;
+            catContainer.style.bottom = '108.5px';
+            catContainer.style.width = '112px';
+            catContainer.style.height = '112px';
+            catContainer.style.filter = 'drop-shadow(0 9px 4px rgba(0, 0, 0, 0.14))';
+            catContainer.style.transform = 'scaleX(-1)';
+          } else if (frameId === 'stagnant') {
+            catContainer.style.left = `${startPosition - 7}px`;
+            catContainer.style.bottom = '110px';
+            catContainer.style.width = '93px';
+            catContainer.style.height = '93px';
+            catContainer.style.filter = 'none';
+            catContainer.style.transform = 'none';
+          }
+
+          step++;
+          setTimeout(animateWalkBack, frameDuration);
+        }
+
+        setTimeout(animateWalkBack, 500);
       }
 
       animateFrame(0);
