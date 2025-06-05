@@ -1,19 +1,331 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact Me</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 20px;
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Contact Me - Trupti's Portfolio</title>
+
+  <style>
+    /* Fonts */
+    @font-face {
+      font-family: 'Upheaval';
+      src: url('upheavtt.ttf') format('truetype');
+    }
+
+    @font-face {
+      font-family: 'Windows Regular';
+      src: url('Windows Regular.ttf') format('truetype');
+    }
+
+    /* General Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    /* Modified body style for contact page */
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #fe6b41; /* Header color */
+      overflow: hidden; /* Consistent with index.html */
+      cursor: none !important; /* Consistent with index.html */
+      position: relative;
+    }
+
+    /* Grid background with reduced opacity */
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: url('bg.png');
+      background-position: center center;
+      background-repeat: repeat;
+      background-size: 150% auto;
+      opacity: 0.8; /* 20% reduction from full opacity (1.0 - 0.2 = 0.8) */
+      pointer-events: none;
+      z-index: -1;
+      mix-blend-mode: screen; /* Changed from overlay to multiply */
+    }
+
+    /* Custom Cursor */
+    #custom-cursor {
+      width: 33px;
+      height: 33px;
+      background-image: url('cursor.png');
+      background-size: contain;
+      background-repeat: no-repeat;
+      position: fixed;
+      pointer-events: none;
+      z-index: 2147483647;
+    }
+
+    * {
+      cursor: none !important;
+    }
+
+    .clickable {
+      cursor: none !important;
+    }
+
+    .social-icon {
+      width: 60px;
+      height: 60px;
+      transition: transform 0.3s ease;
+      pointer-events: auto;
+      z-index: 10000;
+    }
+
+    .header-right a {
+      text-decoration: none;
+      pointer-events: auto;
+      display: block;
+      z-index: 10000;
+    }
+
+    /* Header */
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: #fe6b41;
+      padding: 5px 50px;
+      color: black;
+      font-family: 'Upheaval', Arial, sans-serif;
+    }
+
+    .header-left {
+      display: flex;
+      align-items: center;
+    }
+
+    .header-left a {
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+      color: inherit;
+      pointer-events: auto;
+      z-index: 10000;
+    }
+
+    .logo {
+      width: 35px;
+      height: 35px;
+      margin-right: 15px;
+    }
+
+    .site-name {
+      font-size: 30px;
+      font-weight: bold;
+      letter-spacing: 3px;
+      transition: all 0.3s ease;
+      text-shadow: 2px 1px rgba(0, 0, 0, 0.2);
+    }
+
+    .header-left a:hover .site-name {
+      color: #f4f2ea;
+      font-size: 34px;
+    }
+
+    .header-right {
+      display: flex;
+      gap: 20px;
+    }
+
+    .linkedin-icon:hover {
+      content: url('Hover_linkedin-icon.png');
+      transform: scale(1.033);
+    }
+
+    .instagram-icon:hover {
+      content: url('Hover_instagram-icon.png');
+      transform: scale(1.033);
+    }
+
+    .behance-icon:hover {
+      content: url('Hover_behance-icon.png');
+      transform: scale(1.033);
+    }
+
+    /* Styles for the main content of the contact page */
+    .contact-main-content {
+      display: flex; /* Use flexbox for centering */
+      flex-direction: column; /* Stack children vertically */
+      justify-content: center; /* Center vertically */
+      align-items: center; /* Center horizontally */
+      height: calc(100vh - 70px); /* Full viewport height minus header height */
+      text-align: center;
+      color: white;
+      padding: 20px; /* Add some padding */
+      transform: translateY(-75px); /* Move content up by 75px (was -45px) */
+    }
+
+    .static-text {
+      font-family: 'Upheaval', Arial, sans-serif; /* Changed from 'Windows Regular' to 'Upheaval' */
+      font-size: 103.68px; /* Reduced by 40% from 172.8px */
+      color: black; /* Changed to black */
+      margin-bottom: -5px; /* Reduced from 10px to -5px (15px reduction) */
+      text-shadow: 2px 2px rgba(0, 0, 0, 0.2);
+      letter-spacing: 5px; /* Added kerning */
+    }
+
+    .typewriter-text-container {
+      font-family: 'Upheaval', Arial, sans-serif;
+      font-size: 129.6px; /* Reduced by 40% from 216px */
+      color: #f4f2ea; /* Changed color */
+      text-shadow: 2px 2px rgba(0, 0, 0, 0.3);
+      height: 129.6px; /* Adjusted for new font size */
+      line-height: 129.6px; /* Adjusted for new font size */
+      letter-spacing: 5px; /* Added kerning */
+    }
+
+    /* Blinking cursor for typewriter effect */
+    .typewriter-text-container .cursor {
+      display: inline-block;
+      background-color: #f4f2ea; /* Match new text color */
+      margin-left: 12px; /* Adjusted for smaller font */
+      width: 6px; /* Adjusted for smaller font */
+      animation: blink 1s infinite;
+      height: 117.6px; /* Adjusted proportionally */
+      vertical-align: middle;
+    }
+
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0; }
+    }
+
+    /* Screen Info (Copied from index.html for consistency) */
+    #screenSize {
+      position: fixed;
+      bottom: 10px;
+      right: 10px;
+      background: rgba(0, 0, 0, 0.7);
+      color: white;
+      padding: 10px;
+      border-radius: 5px;
+      font-size: 12px;
+    }
+    /* Styles from index.html not directly used by header or basic page structure */
+    /* e.g., .desktop, .icon, .bowl-container, .cat-container, .doormat-container, */
+    /* .instagram-dialogue, .idb-button, .intro-box are not included in contact.html body, */
+    /* so their styles won't apply. Keeping them in CSS won't harm if this was a shared sheet. */
+    /* For this per-page style block, they are effectively unused. */
+  </style>
 </head>
+
 <body>
-    <h1>Contact Me</h1>
-    <p>Provide your contact details here.</p>
+  <!-- Custom Cursor -->
+  <div id="custom-cursor"></div>
+
+  <!-- Header (Copied from index.html) -->
+  <header>
+    <div class="header-left">
+      <a href="index.html">
+        <img src="logo.png" alt="Logo" class="logo" />
+        <span class="site-name">Trupti Parkar</span>
+      </a>
+    </div>
+    <div class="header-right">
+      <a href="https://www.linkedin.com/in/trupti-parker-803663b1?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app" target="_blank" class="clickable">
+        <img src="linkedin_icon.png" alt="LinkedIn" class="social-icon linkedin-icon clickable" />
+      </a>
+      <a href="https://www.instagram.com/aesthethi.cc?igsh=cWxzbHJvYWowZHVi" target="_blank" class="clickable">
+        <img src="instagram_icon.png" alt="Instagram" class="social-icon instagram-icon clickable" />
+      </a>
+      <a href="https://www.behance.net/truptiparker" target="_blank" class="clickable">
+        <img src="behance_icon.png" alt="Behance" class="social-icon behance-icon clickable" />
+      </a>
+    </div>
+  </header>
+
+  <!-- Main Content for Contact Page -->
+  <main class="contact-main-content">
+    <div class="static-text">
+      Together<br>
+      we can create
+    </div>
+    <div class="typewriter-text-container">
+      <span id="typewriter-text"></span><span class="cursor"></span>
+    </div>
+  </main>
+
+  <!-- Screen Size Debug (Copied from index.html for consistency) -->
+  <div id="screenSize"></div>
+
+  <!-- JavaScript for Custom Cursor & Screen Size & Typewriter -->
+  <script>
+    // Custom Cursor Movement
+    document.addEventListener('mousemove', (e) => {
+      const cursor = document.getElementById('custom-cursor');
+      if (cursor) { // Check if cursor element exists
+        cursor.style.left = `${e.clientX - 16.5}px`;
+        cursor.style.top = `${e.clientY - 16.5}px`;
+      }
+    });
+
+    // Screen Size Debug Info (Copied from index.html)
+    function updateScreenSize() {
+      const screenSizeDiv = document.getElementById('screenSize');
+      if (screenSizeDiv) { // Check if screenSize element exists
+        const width = window.innerWidth;
+        const height = window.innerHeight;
+        const screenWidth = window.screen.width;
+        const screenHeight = window.screen.height;
+        screenSizeDiv.innerHTML =
+          "Window: " + width + "x" + height + "px<br>" +
+          "Screen: " + screenWidth + "x" + screenHeight + "px";
+      }
+    }
+
+    window.addEventListener('load', updateScreenSize);
+    window.addEventListener('resize', updateScreenSize);
+
+    // Typewriter Effect
+    const wordsToType = ["experiences", "art", "stories", "impact", "magic"];
+    let currentWordIndex = 0;
+    let currentCharIndex = 0;
+    let isDeleting = false;
+    const typewriterTextElement = document.getElementById('typewriter-text');
+    const typingSpeed = 150; // Milliseconds per character
+    const deletingSpeed = 100; // Milliseconds per character
+    const delayBetweenWords = 1500; // Milliseconds to wait after a word is typed
+
+    function typeEffect() {
+      const currentWord = wordsToType[currentWordIndex];
+      if (isDeleting) {
+        // Deleting
+        typewriterTextElement.textContent = currentWord.substring(0, currentCharIndex - 1);
+        currentCharIndex--;
+        if (currentCharIndex === 0) {
+          isDeleting = false;
+          currentWordIndex = (currentWordIndex + 1) % wordsToType.length;
+          setTimeout(typeEffect, typingSpeed); // Pause before typing next word
+        } else {
+          setTimeout(typeEffect, deletingSpeed);
+        }
+      } else {
+        // Typing
+        typewriterTextElement.textContent = currentWord.substring(0, currentCharIndex + 1);
+        currentCharIndex++;
+        if (currentCharIndex === currentWord.length) {
+          isDeleting = true;
+          setTimeout(typeEffect, delayBetweenWords); // Wait before deleting
+        } else {
+          setTimeout(typeEffect, typingSpeed);
+        }
+      }
+    }
+
+    // Start the typewriter effect when the page loads
+    document.addEventListener('DOMContentLoaded', function() {
+      if (typewriterTextElement) { // Ensure the element exists
+        setTimeout(typeEffect, 500); // Initial delay before starting
+      }
+    });
+  </script>
 </body>
 </html>
