@@ -190,7 +190,7 @@
         .navigation-buttons {
             position: absolute;
             bottom: 115px;
-            left: calc(50% - 85px);
+            left: calc(50% + 0px);
             transform: translateX(-50%);
             z-index: 100;
             display: flex;
@@ -260,8 +260,9 @@
 
         <!-- Navigation Buttons -->
         <div class="navigation-buttons">
-            <button class="nav-button active" onclick="showLayer(1)" id="btn-whoami" style="margin-left: 15px;">Who Am I</button>
-            <button class="nav-button" onclick="showLayer(2)" id="btn-workexp" style="margin-left: 43px;">Work<br>Experience</button>
+            <button class="nav-button active" onclick="showLayer(1)" id="btn-whoami" style="margin-left: 35px;">Who Am I</button>
+            <button class="nav-button" onclick="showLayer(2)" id="btn-workexp" style="margin-left: 18px;">Work<br>Experience</button>
+            <button class="nav-button" onclick="showLayer(3)" id="btn-education" style="margin-left: 20px;">Education</button>
         </div>
     </main>
 
@@ -299,6 +300,8 @@
                 document.getElementById('btn-whoami').classList.add('active');
             } else if (layerNumber === 2) {
                 document.getElementById('btn-workexp').classList.add('active');
+            } else if (layerNumber === 3) {
+                document.getElementById('btn-education').classList.add('active');
             }
         }
     </script>
