@@ -189,7 +189,7 @@
         /* Navigation Buttons */
         .navigation-buttons {
             position: absolute;
-            bottom: 115px;
+            bottom: 100px;
             left: calc(50% + 0px);
             transform: translateX(-50%);
             z-index: 100;
@@ -211,6 +211,7 @@
             transition: all 0.3s ease;
             letter-spacing: 2px;
             text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.5);
+            opacity: 0; /* Make buttons invisible */
         }
 
         .nav-button:hover {
@@ -253,16 +254,16 @@
     <main>
         <!-- Image Stack Container -->
         <div class="image-stack-container">
-            <img src="About me pages-04.png" alt="About Me Page 1" class="about-image">
-            <img src="About me pages-05.png" alt="About Me Page 2" class="about-image">
-            <img src="About me pages-06.png" alt="About Me Page 3" class="about-image">
+            <img src="About me-04.png" alt="About Me Page 1" class="about-image">
+            <img src="About me-05.png" alt="About Me Page 2" class="about-image">
+            <img src="About me-06.png" alt="About Me Page 3" class="about-image">
         </div>
 
         <!-- Navigation Buttons -->
         <div class="navigation-buttons">
-            <button class="nav-button active" onclick="showLayer(1)" id="btn-whoami" style="margin-left: 35px;">Who Am I</button>
-            <button class="nav-button" onclick="showLayer(2)" id="btn-workexp" style="margin-left: 18px;">Work<br>Experience</button>
-            <button class="nav-button" onclick="showLayer(3)" id="btn-education" style="margin-left: 20px;">Education</button>
+            <button class="nav-button active" onclick="showLayer(1)" id="btn-whoami" style="margin-left: 37px;">Who Am I</button>
+            <button class="nav-button" onclick="showLayer(2)" id="btn-workexp" style="margin-left: 40px;">Work<br>Experience</button>
+            <button class="nav-button" onclick="showLayer(3)" id="btn-education" style="margin-left: 45px;">Education</button>
         </div>
     </main>
 
