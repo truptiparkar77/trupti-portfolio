@@ -28,6 +28,7 @@
             background-color: #f4f2ea;
             overflow: hidden;
             cursor: none !important;
+            height: 100vh;
         }
 
         /* Custom Cursor */
@@ -130,9 +131,14 @@
 
         /* Main content styles */
         main {
-            padding: 40px;
-            max-width: 800px;
-            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 0;
+            height: calc(100vh - 70px);
+            overflow: hidden;
+            position: relative;
         }
 
         h1 {
@@ -145,6 +151,76 @@
             line-height: 1.6;
             color: #666;
             font-family: 'Windows Regular', Arial, sans-serif;
+        }
+
+        /* Image container styles */
+        .image-stack-container {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .about-image {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            max-width: 90%;
+            max-height: 90%;
+            object-fit: contain;
+            z-index: 1;
+        }
+
+        .about-image:nth-child(1) {
+            z-index: 3;
+        }
+
+        .about-image:nth-child(2) {
+            z-index: 2;
+        }
+
+        .about-image:nth-child(3) {
+            z-index: 1;
+        }
+
+        /* Navigation Buttons */
+        .navigation-buttons {
+            position: absolute;
+            bottom: 115px;
+            left: calc(50% - 145px);
+            transform: translateX(-50%);
+            z-index: 100;
+            display: flex;
+            flex-direction: row;
+            gap: 20px;
+        }
+
+        .nav-button {
+            font-family: 'Upheaval', Arial, sans-serif;
+            font-size: 24px;
+            color: black !important;
+            background: none;
+            border: none;
+            padding: 10px 0;
+            cursor: none !important;
+            pointer-events: auto;
+            text-decoration: underline;
+            transition: all 0.3s ease;
+            letter-spacing: 2px;
+            text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.5);
+        }
+
+        .nav-button:hover {
+            color: #fe6b41 !important;
+            transform: scale(1.1);
+        }
+
+        .nav-button.active {
+            color: black !important;
+            font-weight: bold;
         }
     </style>
 </head>
@@ -175,8 +251,18 @@
 
     <!-- Main Content -->
     <main>
-        <h1>About Me</h1>
-        <p>Write about yourself here.</p>
+        <!-- Image Stack Container -->
+        <div class="image-stack-container">
+            <img src="About me pages-04.png" alt="About Me Page 1" class="about-image">
+            <img src="About me pages-05.png" alt="About Me Page 2" class="about-image">
+            <img src="About me pages-06.png" alt="About Me Page 3" class="about-image">
+        </div>
+
+        <!-- Navigation Buttons -->
+        <div class="navigation-buttons">
+            <button class="nav-button active" onclick="showLayer(1)" id="btn-whoami">Who Am I</button>
+            <button class="nav-button" onclick="showLayer(2)" id="btn-workexp" style="margin-left: 40px;">Work Experience</button>
+        </div>
     </main>
 
     <!-- JavaScript for Custom Cursor -->
@@ -189,6 +275,32 @@
             cursor.style.top = `${e.clientY - 16.5}px`;
           }
         });
+
+        // Layer switching functionality
+        function showLayer(layerNumber) {
+            // Reset all images to default z-index
+            const images = document.querySelectorAll('.about-image');
+            images.forEach((img, index) => {
+                img.style.zIndex = index + 1;
+            });
+
+            // Bring the selected layer to top
+            const selectedImage = images[layerNumber - 1];
+            if (selectedImage) {
+                selectedImage.style.zIndex = 100;
+            }
+
+            // Update button states
+            const buttons = document.querySelectorAll('.nav-button');
+            buttons.forEach(btn => btn.classList.remove('active'));
+            
+            // Set the correct button as active
+            if (layerNumber === 1) {
+                document.getElementById('btn-whoami').classList.add('active');
+            } else if (layerNumber === 2) {
+                document.getElementById('btn-workexp').classList.add('active');
+            }
+        }
     </script>
 </body>
 </html>

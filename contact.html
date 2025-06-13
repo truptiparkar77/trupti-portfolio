@@ -160,26 +160,28 @@
       text-align: center;
       color: white;
       padding: 20px; /* Add some padding */
-      transform: translateY(-75px); /* Move content up by 75px (was -45px) */
+      transform: translateY(-35px); /* Moved down by 10px (from -45px to -35px) */
     }
 
     .static-text {
       font-family: 'Upheaval', Arial, sans-serif; /* Changed from 'Windows Regular' to 'Upheaval' */
-      font-size: 103.68px; /* Reduced by 40% from 172.8px */
+      font-size: 107.82px; /* Reduced by 20% from 134.78px */
       color: black; /* Changed to black */
       margin-bottom: -5px; /* Reduced from 10px to -5px (15px reduction) */
       text-shadow: 2px 2px rgba(0, 0, 0, 0.2);
       letter-spacing: 5px; /* Added kerning */
+      transform: translateY(10px); /* Move text content down by 10px */
     }
 
     .typewriter-text-container {
       font-family: 'Upheaval', Arial, sans-serif;
-      font-size: 129.6px; /* Reduced by 40% from 216px */
+      font-size: 134.78px; /* Reduced by 20% from 168.48px */
       color: #f4f2ea; /* Changed color */
       text-shadow: 2px 2px rgba(0, 0, 0, 0.3);
-      height: 129.6px; /* Adjusted for new font size */
-      line-height: 129.6px; /* Adjusted for new font size */
+      height: 134.78px; /* Adjusted for new font size */
+      line-height: 134.78px; /* Adjusted for new font size */
       letter-spacing: 5px; /* Added kerning */
+      transform: translateY(10px); /* Move text content down by 10px */
     }
 
     /* Blinking cursor for typewriter effect */
@@ -187,15 +189,51 @@
       display: inline-block;
       background-color: #f4f2ea; /* Match new text color */
       margin-left: 12px; /* Adjusted for smaller font */
-      width: 6px; /* Adjusted for smaller font */
+      width: 6.4px; /* Reduced proportionally for smaller text */
       animation: blink 1s infinite;
-      height: 117.6px; /* Adjusted proportionally */
+      height: 122.3px; /* Reduced proportionally for smaller text */
       vertical-align: middle;
     }
 
     @keyframes blink {
       0%, 100% { opacity: 1; }
       50% { opacity: 0; }
+    }
+
+    /* Email Button Styles */
+    .email-button-container {
+      margin-top: 40px; /* Space above the button */
+      text-align: center;
+    }
+
+    .email-button {
+      display: inline-block;
+      background-image: url('email button.png');
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: center;
+      width: 442px; /* Increased by 30% from 340px */
+      height: 132.6px; /* Increased by 30% from 102px */
+      transition: all 0.3s ease;
+      pointer-events: auto;
+      z-index: 10000;
+      position: relative;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Windows Regular', Arial, sans-serif;
+      font-size: 23.4px; /* Increased by 30% from 18px */
+      color: #333; /* Dark color for normal state */
+      font-weight: normal;
+      text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.3);
+    }
+
+    .email-button:hover {
+      background-image: url('email button_hover.png');
+      transform: scale(1.05);
+      color: #f4f2ea; /* Light color for hover state to contrast with hover button */
+      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
     }
 
     /* Screen Info (Copied from index.html for consistency) */
@@ -250,6 +288,10 @@
     </div>
     <div class="typewriter-text-container">
       <span id="typewriter-text"></span><span class="cursor"></span>
+    </div>
+    <!-- Email Button (Newly Added) -->
+    <div class="email-button-container">
+      <a href="mailto:trupti.parkar99@gmail.com" class="email-button">Let's start a conversation</a>
     </div>
   </main>
 
