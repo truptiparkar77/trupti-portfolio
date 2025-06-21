@@ -26,6 +26,11 @@
         body {
             font-family: Arial, sans-serif;
             background-color: #f4f2ea;
+            background-image: url('bg-grid.png');
+            background-position: center center;
+            background-repeat: repeat;
+            background-size: 150% auto;
+            background-blend-mode: overlay;
             overflow: hidden;
             cursor: none !important;
         }
@@ -90,22 +95,20 @@
         }
 
         .logo {
-          width: 35px;
-          height: 35px;
+          width: 42.35px; /* Increased by 10% from 38.5px */
+          height: 42.35px; /* Increased by 10% from 38.5px */
           margin-right: 15px;
         }
 
         .site-name {
-          font-size: 30px;
-          font-weight: bold;
-          letter-spacing: 3px;
+          height: 44.64px; /* Increased by 10% from 40.58px */
           transition: all 0.3s ease;
-          text-shadow: 2px 1px rgba(0, 0, 0, 0.2);
+          margin-left: -5px; /* Moved 10px to the right from -15px */
         }
 
         .header-left a:hover .site-name {
-          color: #f4f2ea;
-          font-size: 34px;
+          filter: brightness(1.1);
+          transform: scale(1.1);
         }
 
         .header-right {
@@ -130,9 +133,107 @@
 
         /* Main content styles */
         main {
-            padding: 40px;
-            max-width: 800px;
-            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            justify-content: flex-end;
+            padding: 0;
+            height: calc(100vh - 70px);
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* Image container styles */
+        .projects-stack-container {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: flex-end;
+            justify-content: flex-end;
+        }
+
+        .project-image {
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+            object-position: bottom right;
+            z-index: 1;
+        }
+
+        .project-image:nth-child(1) {
+            z-index: 5;
+        }
+
+        .project-image:nth-child(2) {
+            z-index: 4;
+        }
+
+        .project-image:nth-child(3) {
+            z-index: 3;
+        }
+
+        .project-image:nth-child(4) {
+            z-index: 2;
+        }
+
+        .project-image:nth-child(5) {
+            z-index: 1;
+        }
+
+        /* See More Button Styles */
+        .see-more-button {
+            position: absolute;
+            bottom: 85px; /* Moved 10px lower from 95px */
+            left: calc(50% + 50px); /* Moved 5px more to the right from 45px */
+            transform: translateX(-50%);
+            background-image: url('see more button.png');
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+            width: 200px;
+            height: 60px;
+            border: none;
+            background-color: transparent;
+            pointer-events: auto;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .see-more-button:hover {
+            transform: translateX(-50%) scale(1.05);
+        }
+
+        /* Specific positioning for pl 5 see more button */
+        #btn-project5 {
+            bottom: 80px; /* 5px lower than the previous 85px */
+        }
+
+        /* Invisible Layer Control Buttons */
+        .layer-control-buttons {
+            position: absolute;
+            top: 50px;
+            left: 0;
+            right: 0;
+            display: flex;
+            justify-content: flex-end; /* Changed from flex-start to right-align */
+            align-items: flex-start;
+            z-index: 2000;
+            height: 95px;
+        }
+
+        .layer-control-button {
+            width: 250px;
+            height: 95px;
+            background: transparent; /* Made invisible */
+            border: none; /* Removed red border */
+            opacity: 0; /* Made completely invisible */
+            pointer-events: auto;
+            transition: opacity 0.3s ease;
+            margin: 0;
         }
 
         h1 {
@@ -157,7 +258,7 @@
         <div class="header-left">
           <a href="index.html">
             <img src="logo.png" alt="Logo" class="logo" />
-            <span class="site-name">Trupti Parkar</span>
+            <img src="name.png" alt="Trupti Parkar" class="site-name" />
           </a>
         </div>
         <div class="header-right">
@@ -175,19 +276,75 @@
 
     <!-- Main Content -->
     <main>
-        <h1>Projects</h1>
-        <p>Welcome to the Projects page. Showcase your work here.</p>
+        <!-- Projects Stack Container -->
+        <div class="projects-stack-container">
+            <img src="pl 1.png" alt="Project 1" class="project-image">
+            <img src="pl 2.png" alt="Project 2" class="project-image">
+            <img src="pl 3.png" alt="Project 3" class="project-image">
+            <img src="pl 4.png" alt="Project 4" class="project-image">
+            <img src="pl 5.png" alt="Project 5" class="project-image">
+        </div>
+        
+        <!-- See More Buttons for each project -->
+        <a href="https://www.behance.net/gallery/228505551/Libra-Premium-Wine-(Packaging-Logo-Design)" target="_blank" class="see-more-button" onclick="showProject(1)" id="btn-project1"></a>
+        <a href="https://www.behance.net/gallery/220589819/Monster-Murphy-Brand-Mascot" target="_blank" class="see-more-button" onclick="showProject(2)" id="btn-project2"></a>
+        <a href="https://www.behance.net/gallery/220588247/Book-Cover-Design" target="_blank" class="see-more-button" onclick="showProject(3)" id="btn-project3"></a>
+        <a href="https://www.behance.net/gallery/220587057/Typeface-Design-Pixel-Punk" target="_blank" class="see-more-button" onclick="showProject(4)" id="btn-project4"></a>
+        <a href="https://www.behance.net/gallery/219522707/Sakhe-Packaging-Design" target="_blank" class="see-more-button" onclick="showProject(5)" id="btn-project5"></a>
+
+        <!-- Invisible Layer Control Buttons -->
+        <div class="layer-control-buttons">
+            <button class="layer-control-button" onclick="showProject(1)"></button>
+            <button class="layer-control-button" onclick="showProject(2)"></button>
+            <button class="layer-control-button" onclick="showProject(3)"></button>
+            <button class="layer-control-button" onclick="showProject(4)"></button>
+            <button class="layer-control-button" onclick="showProject(5)"></button>
+        </div>
     </main>
 
     <!-- JavaScript for Custom Cursor -->
     <script>
-        // Custom Cursor Movement
-        document.addEventListener('mousemove', (e) => {
-          const cursor = document.getElementById('custom-cursor');
-          if (cursor) {
-            cursor.style.left = `${e.clientX - 16.5}px`;
-            cursor.style.top = `${e.clientY - 16.5}px`;
-          }
+        // Project layer management
+        let currentProject = 1; // Default to first project
+
+        function showProject(projectNumber) {
+            // Reset all project images to default z-index
+            const images = document.querySelectorAll('.project-image');
+            images.forEach((img, index) => {
+                img.style.zIndex = index + 1;
+            });
+
+            // Bring the selected project to the front
+            const selectedImage = images[projectNumber - 1];
+            if (selectedImage) {
+                selectedImage.style.zIndex = 100;
+            }
+
+            // Hide all see-more buttons first
+            const buttons = document.querySelectorAll('.see-more-button');
+            buttons.forEach(btn => btn.style.display = 'none');
+            
+            // Show the see-more button for the current project
+            const currentButton = document.getElementById(`btn-project${projectNumber}`);
+            if (currentButton) {
+                currentButton.style.display = 'block';
+            }
+            
+            currentProject = projectNumber;
+        }
+
+        // Initialize - show only the first project's button
+        document.addEventListener('DOMContentLoaded', function() {
+            showProject(1);
+        });
+
+        // Optional: Add keyboard navigation
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'ArrowLeft' && currentProject > 1) {
+                showProject(currentProject - 1);
+            } else if (e.key === 'ArrowRight' && currentProject < 5) {
+                showProject(currentProject + 1);
+            }
         });
     </script>
 </body>
