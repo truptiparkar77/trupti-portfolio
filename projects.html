@@ -32,7 +32,6 @@
             background-size: 150% auto;
             background-blend-mode: overlay;
             overflow: hidden;
-            cursor: none !important;
         }
 
         /* Custom Cursor */
@@ -45,14 +44,7 @@
           position: fixed;
           pointer-events: none;
           z-index: 2147483647;
-        }
-
-        * {
-          cursor: none !important;
-        }
-
-        .clickable {
-          cursor: none !important;
+          display: none; /* Hide custom cursor */
         }
 
         .social-icon {
