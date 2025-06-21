@@ -29,7 +29,6 @@
       font-family: Arial, sans-serif;
       background-color: #fe6b41; /* Header color */
       overflow: hidden; /* Consistent with index.html */
-      cursor: none !important; /* Consistent with index.html */
       position: relative;
     }
 
@@ -61,14 +60,7 @@
       position: fixed;
       pointer-events: none;
       z-index: 2147483647;
-    }
-
-    * {
-      cursor: none !important;
-    }
-
-    .clickable {
-      cursor: none !important;
+      display: none; /* Hide custom cursor */
     }
 
     .social-icon {
