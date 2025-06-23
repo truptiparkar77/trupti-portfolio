@@ -202,7 +202,7 @@
       left: 6px; /* Center within container */
       bottom: 30px;
       opacity: 0;
-      transition: opacity 0.3s ease;
+      transition: none; /* Remove all transitions for instant changes */
       filter: drop-shadow(4px 4px 8px rgba(0, 0, 0, 0.15)); /* Match other icons shadow */
     }
 
@@ -579,7 +579,7 @@
           'walk2', 'walk3',
           'walk1', 'walk2', 'walk3',
           'walk1', 'walk2', 'walk3',
-          'walk1', // Removed 'walk2' - now goes directly to stagnant
+          'walk1', 'walk2', 'walk3', // Added walk2 and walk3 back before stagnant
           'stagnant'
         ];
         
