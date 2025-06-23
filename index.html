@@ -292,11 +292,11 @@
     .idb-button {
       position: fixed;
       left: 26%;
-      top: 49.5%;
+      top: calc(49.5% + 17px); /* Moved additional 7px lower (was 10px, now 17px) */
       transform: translate(-50%, -50%);
       z-index: 10002;
-      width: 370px; /* Match standard icon size */
-      height: 370px;
+      width: 57px; /* Increased by 10% from 52px */
+      height: 57px; /* Increased by 10% from 52px */
       cursor: pointer;
       filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.2));
       transition: transform 0.2s ease;
@@ -321,6 +321,8 @@
       width: 100%;
       height: 100%;
       display: block;
+      object-fit: contain; /* Maintain aspect ratio without distortion */
+      object-position: center; /* Center the image */
     }
 
     /* Intro Box */
