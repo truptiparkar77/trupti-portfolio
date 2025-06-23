@@ -127,12 +127,16 @@
     .desktop {
       display: flex;
       flex-direction: column;
-      gap: 30px;
-      padding: 40px 20px;
+      gap: 30px; /* Reverted back to original spacing */
+      position: fixed;
+      left: 40px; /* Match bowl-container left position */
+      top: 50%; /* Center vertically */
+      transform: translateY(-50%); /* Adjust for perfect centering */
+      z-index: 100;
     }
 
     .icon {
-      width: 100px;
+      width: 80px; /* Match bowl-container width */
       text-align: center;
       font-size: 20px;
       color: black;
