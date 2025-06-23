@@ -576,8 +576,7 @@
 
       function walkBackSequence() {
         const walkBackFrames = [
-          'eating', // Represents the state before starting to walk back
-          'walk1', 'walk2', 'walk3',
+          'walk2', 'walk3',
           'walk1', 'walk2', 'walk3',
           'walk1', 'walk2', 'walk3',
           'walk1', 'walk2', // Removed last 'walk3'
@@ -598,17 +597,10 @@
           const frameId = walkBackFrames[step];
           showCatFrame(frameId);
 
-          if (frameId === 'eating') { // Frame before starting walk back, cat is turned
-            catContainer.style.left = `${walkBackInitialEatingLeft}px`;
-            catContainer.style.bottom = '104px'; // Adjusted from 107px
-            catContainer.style.width = '110px';
-            catContainer.style.height = '110px';
-            catContainer.style.transform = 'scaleX(-1)'; // Flipped
-            catContainer.style.filter = 'drop-shadow(0 9px 4px rgba(0, 0, 0, 0.14))'; // Consistent shadow
-          } else if (frameId.startsWith('walk')) {
-            const numWalkFramesInSeq = walkBackFrames.length - 2; // Total walk frames in this sequence
+          if (frameId.startsWith('walk')) {
+            const numWalkFramesInSeq = walkBackFrames.length - 1; // Total walk frames in this sequence (excluding final stagnant)
             // Progress for walk: 0 for first walk frame, 1 for last walk frame
-            const progress = (numWalkFramesInSeq > 1) ? (step - 1) / (numWalkFramesInSeq - 1) : 0;
+            const progress = (numWalkFramesInSeq > 1) ? step / (numWalkFramesInSeq - 1) : 0;
             
             const currentLeft = walkBackInitialEatingLeft + progress * (walkBackFinalStagnantLeft - walkBackInitialEatingLeft);
             
