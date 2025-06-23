@@ -154,26 +154,41 @@
             object-fit: contain;
             object-position: bottom right;
             z-index: 1;
+            transition: transform 0.2s ease;
         }
 
-        .project-image:nth-child(1) {
-            z-index: 5;
+        /* Project Hover Images */
+        .pl1-hover, .pl2-hover, .pl3-hover, .pl4-hover, .pl5-hover {
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+            object-position: bottom right;
+            transition: margin-bottom 0.2s ease; /* Changed to margin-bottom transition */
+            transform-origin: bottom right;
         }
 
-        .project-image:nth-child(2) {
-            z-index: 4;
+        /* Specific z-index for each hover image to be above ALL project layers */
+        .pl1-hover {
+            z-index: 1001; /* Highest - topmost layer */
         }
 
-        .project-image:nth-child(3) {
-            z-index: 3;
+        .pl2-hover {
+            z-index: 1000; /* Just below pl1-hover */
         }
 
-        .project-image:nth-child(4) {
-            z-index: 2;
+        .pl3-hover {
+            z-index: 1002; /* Much higher than any project layer */
         }
 
-        .project-image:nth-child(5) {
-            z-index: 1;
+        .pl4-hover {
+            z-index: 1003; /* Much higher than any project layer */
+        }
+
+        .pl5-hover {
+            z-index: 1004; /* Much higher than any project layer */
         }
 
         /* See More Button Styles */
@@ -219,10 +234,10 @@
 
         .layer-control-button {
             width: 250px;
-            height: 95px;
-            background: transparent; /* Made invisible */
-            border: none; /* Removed red border */
-            opacity: 0; /* Made completely invisible */
+            height: 190px; /* Doubled from 95px */
+            background: rgba(255, 0, 0, 0.3); /* Made visible with red background */
+            border: 2px solid red; /* Added red border */
+            opacity: 1; /* Made visible */
             pointer-events: auto;
             transition: opacity 0.3s ease;
             margin: 0;
@@ -271,10 +286,15 @@
         <!-- Projects Stack Container -->
         <div class="projects-stack-container">
             <img src="pl 1.png" alt="Project 1" class="project-image">
+            <img src="pl 1 hover.png" alt="Project 1 Hover" class="pl1-hover">
             <img src="pl 2.png" alt="Project 2" class="project-image">
+            <img src="pl 2 hover.png" alt="Project 2 Hover" class="pl2-hover">
             <img src="pl 3.png" alt="Project 3" class="project-image">
+            <img src="pl 3 hover.png" alt="Project 3 Hover" class="pl3-hover">
             <img src="pl 4.png" alt="Project 4" class="project-image">
+            <img src="pl 4 hover.png" alt="Project 4 Hover" class="pl4-hover">
             <img src="pl 5.png" alt="Project 5" class="project-image">
+            <img src="pl 5 hover.png" alt="Project 5 Hover" class="pl5-hover">
         </div>
         
         <!-- See More Buttons for each project -->
@@ -327,6 +347,63 @@
 
         // Initialize - show only the first project's button
         document.addEventListener('DOMContentLoaded', function() {
+            const buttons = document.querySelectorAll('.layer-control-button');
+            const pl1HoverImage = document.querySelector('.pl1-hover');
+            const pl2HoverImage = document.querySelector('.pl2-hover');
+            const pl3HoverImage = document.querySelector('.pl3-hover');
+            const pl4HoverImage = document.querySelector('.pl4-hover');
+            const pl5HoverImage = document.querySelector('.pl5-hover');
+            
+            // First button (index 0) affects pl 1 hover image
+            buttons[0].addEventListener('mouseenter', function() {
+                pl1HoverImage.style.marginBottom = '20px';
+                pl1HoverImage.style.backgroundColor = 'rgba(255, 0, 0, 0.3)';
+            });
+            buttons[0].addEventListener('mouseleave', function() {
+                pl1HoverImage.style.marginBottom = '0px';
+                pl1HoverImage.style.backgroundColor = 'transparent';
+            });
+            
+            // Second button (index 1) affects pl 2 hover image
+            buttons[1].addEventListener('mouseenter', function() {
+                pl2HoverImage.style.marginBottom = '20px';
+                pl2HoverImage.style.backgroundColor = 'rgba(255, 0, 0, 0.3)';
+            });
+            buttons[1].addEventListener('mouseleave', function() {
+                pl2HoverImage.style.marginBottom = '0px';
+                pl2HoverImage.style.backgroundColor = 'transparent';
+            });
+            
+            // Third button (index 2) affects pl 3 hover image
+            buttons[2].addEventListener('mouseenter', function() {
+                pl3HoverImage.style.marginBottom = '20px';
+                pl3HoverImage.style.backgroundColor = 'rgba(255, 0, 0, 0.3)';
+            });
+            buttons[2].addEventListener('mouseleave', function() {
+                pl3HoverImage.style.marginBottom = '0px';
+                pl3HoverImage.style.backgroundColor = 'transparent';
+            });
+            
+            // Fourth button (index 3) affects pl 4 hover image
+            buttons[3].addEventListener('mouseenter', function() {
+                pl4HoverImage.style.marginBottom = '20px';
+                pl4HoverImage.style.backgroundColor = 'rgba(255, 0, 0, 0.3)';
+            });
+            buttons[3].addEventListener('mouseleave', function() {
+                pl4HoverImage.style.marginBottom = '0px';
+                pl4HoverImage.style.backgroundColor = 'transparent';
+            });
+            
+            // Fifth button (index 4) affects pl 5 hover image
+            buttons[4].addEventListener('mouseenter', function() {
+                pl5HoverImage.style.marginBottom = '20px';
+                pl5HoverImage.style.backgroundColor = 'rgba(255, 0, 0, 0.3)';
+            });
+            buttons[4].addEventListener('mouseleave', function() {
+                pl5HoverImage.style.marginBottom = '0px';
+                pl5HoverImage.style.backgroundColor = 'transparent';
+            });
+            
             showProject(1);
         });
 
