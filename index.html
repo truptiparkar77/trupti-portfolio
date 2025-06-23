@@ -278,12 +278,12 @@
     /* Instagram Dialogue Box */
     .instagram-dialogue {
       position: fixed;
-      left: 26%;
-      top: 49%;
-      transform: translate(-50%, -50%);  /* Only use transform for centering */
+      left: calc(79% - 165px + 20px); /* Moved 20px to the right */
+      top: calc(40% + 30px + 30px); /* Moved additional 30px lower (total 60px) */
+      transform: translateY(-50%); /* Only transform Y since we're using left */
       z-index: 1000;
-      width: 400px;  /* Set to original size */
-      filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.2));  /* Windows 98-style shadow */
+      width: 400px;
+      filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.2));
     }
 
     .instagram-dialogue img {
@@ -295,12 +295,12 @@
     /* IDB Button */
     .idb-button {
       position: fixed;
-      left: 26%;
-      top: calc(49.5% + 17px); /* Moved additional 7px lower (was 10px, now 17px) */
-      transform: translate(-50%, -50%);
+      left: calc(79% - 165px + 200px + 20px); /* Moved 20px to the right (added to existing offset) */
+      top: calc(40% + 10px + 30px + 30px); /* Moved additional 30px lower (total 70px) */
+      transform: translate(-50%, -50%); /* Center the button itself */
       z-index: 10002;
-      width: 57px; /* Increased by 10% from 52px */
-      height: 57px; /* Increased by 10% from 52px */
+      width: 57px;
+      height: 57px;
       cursor: pointer;
       filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.2));
       transition: transform 0.2s ease;
@@ -332,9 +332,9 @@
     /* Intro Box */
     .intro-box {
       position: fixed;
-      left: calc(79% - 165px); /* Changed from using right to using left */
-      top: 40%;
-      transform: translateY(-50%); /* Only transform Y since we're using left */
+      left: 26%; /* Moved to Instagram dialogue's position */
+      top: 49%; /* Moved to Instagram dialogue's position */
+      transform: translate(-50%, -50%); /* Updated transform for centering */
       z-index: 1000;
       filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.2));
       width: 400px;
