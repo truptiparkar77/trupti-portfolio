@@ -351,6 +351,23 @@
       height: auto;
       display: block;
     }
+
+    /* Disclaimer Box */
+    .disclaimer-box {
+      position: fixed;
+      left: 1040px; /* Positioned to the right of the cat (cat is at 700px) */
+      top: 70%; /* Centrally aligned vertically */
+      transform: translateY(-50%); /* Center vertically */
+      z-index: 1000;
+      filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.2));
+      width: 300px; /* Increased by 30% from 150px (150 * 1.3 = 195) */
+    }
+
+    .disclaimer-box img {
+      width: 100%; /* Scale to container width */
+      height: auto; /* Maintain aspect ratio */
+      display: block;
+    }
   </style>
 </head>
 
@@ -433,6 +450,11 @@
     <img src="Walk2.png" alt="Walking 2" class="cat-frame" id="walk2" />
     <img src="Walk3.png" alt="Walking 3" class="cat-frame" id="walk3" />
     <img src="cat_eating.png" alt="Cat Eating" class="cat-frame" id="eating" />
+  </div>
+
+  <!-- Disclaimer Box -->
+  <div class="disclaimer-box">
+    <img src="disclaimer box.png" alt="Disclaimer">
   </div>
 
   <!-- JavaScript -->
