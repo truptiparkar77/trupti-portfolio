@@ -231,8 +231,8 @@
       transform: translateX(-50%);
       opacity: 1;
       z-index: 2;
-      width: 90px;  /* Reduced from 93px */
-      height: 90px; /* Reduced from 93px */
+      width: 100px;  /* Increased from 90px to 100px */
+      height: 100px; /* Increased from 90px to 100px */
       transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1),
                 height 0.3s cubic-bezier(0.4, 0, 0.2, 1),
                 bottom 0.3s cubic-bezier(0.4, 0, 0.2, 1),
@@ -517,7 +517,7 @@
       const startPosition = 700;
       const endPosition = 40; // Base position of the bowl area
       const totalFrames = frames.length;
-      const frameDuration = 300; 
+      const frameDuration = 230; // Reduced from 300ms to 200ms for faster walking
 
       // Start with full bowl
       updateBowlStage(0);
@@ -565,8 +565,8 @@
         } else if (frameId === 'stagnant') { // Initial stagnant state
           // catContainer.style.left is already set
           catContainer.style.bottom = '107px';  // Adjusted from 110px
-          catContainer.style.width = '90px';
-          catContainer.style.height = '90px';
+          catContainer.style.width = '100px'; // Reduced from 90px to 100px
+          catContainer.style.height = '100px'; // Reduced from 90px to 100px
           catContainer.style.filter = 'none'; 
         }
         // Removed generic else block as all frame types are handled
@@ -579,7 +579,7 @@
           'walk2', 'walk3',
           'walk1', 'walk2', 'walk3',
           'walk1', 'walk2', 'walk3',
-          'walk1', 'walk2', // Removed last 'walk3'
+          'walk1', // Removed 'walk2' - now goes directly to stagnant
           'stagnant'
         ];
         
@@ -613,10 +613,10 @@
           } else if (frameId === 'stagnant') { // Final stagnant frame
             catContainer.style.left = `${walkBackFinalStagnantLeft}px`; // Exact final position
             catContainer.style.transform = 'translateX(-50%)'; // Reset transform to initial (unflipped, centered)
-            catContainer.style.bottom = '107px'; // Adjusted from 110px
-            catContainer.style.width = '90px';
-            catContainer.style.height = '90px';
-            catContainer.style.filter = 'none'; // Reset shadow
+            catContainer.style.bottom = '107px'; // Reset to original stagnant position
+            catContainer.style.width = '100px'; // Match the stagnant cat size
+            catContainer.style.height = '100px'; // Match the stagnant cat size
+            catContainer.style.filter = 'none'; // Reset shadow to match stagnant state
           }
 
           step++;
